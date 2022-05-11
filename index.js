@@ -10,23 +10,23 @@ const getElementByNota = (nota) =>
 	a entrada do teclado responsável por reproduzir aquela nota 
 */
 const teclas = {
-  A: { element: getElementByNota("C"), nota: "C", octaveOffset: 0 },
-  W: { element: getElementByNota("C#"), nota: "C#", octaveOffset: 0 },
-  S: { element: getElementByNota("D"), nota: "D", octaveOffset: 0 },
-  E: { element: getElementByNota("D#"), nota: "D#", octaveOffset: 0 },
-  D: { element: getElementByNota("E"), nota: "E", octaveOffset: 0 },
-  F: { element: getElementByNota("F"), nota: "F", octaveOffset: 0 },
-  T: { element: getElementByNota("F#"), nota: "F#", octaveOffset: 0 },
-  G: { element: getElementByNota("G"), nota: "G", octaveOffset: 0 },
-  Y: { element: getElementByNota("G#"), nota: "G#", octaveOffset: 0 },
-  H: { element: getElementByNota("A"), nota: "A", octaveOffset: 1 },
-  U: { element: getElementByNota("A#"), nota: "A#", octaveOffset: 1 },
-  J: { element: getElementByNota("B"), nota: "B", octaveOffset: 1 },
-  K: { element: getElementByNota("C2"), nota: "C", octaveOffset: 1 },
-  O: { element: getElementByNota("C#2"), nota: "C#", octaveOffset: 1 },
-  L: { element: getElementByNota("D2"), nota: "D", octaveOffset: 1 },
-  P: { element: getElementByNota("D#2"), nota: "D#", octaveOffset: 1 },
-  semicolon: { element: getElementByNota("E2"), nota: "E", octaveOffset: 1 }
+  A: { elemento: getElementByNota("C"), nota: "C", octaveOffset: 0 },
+  W: { elemento: getElementByNota("C#"), nota: "C#", octaveOffset: 0 },
+  S: { elemento: getElementByNota("D"), nota: "D", octaveOffset: 0 },
+  E: { elemento: getElementByNota("D#"), nota: "D#", octaveOffset: 0 },
+  D: { elemento: getElementByNota("E"), nota: "E", octaveOffset: 0 },
+  F: { elemento: getElementByNota("F"), nota: "F", octaveOffset: 0 },
+  T: { elemento: getElementByNota("F#"), nota: "F#", octaveOffset: 0 },
+  G: { elemento: getElementByNota("G"), nota: "G", octaveOffset: 0 },
+  Y: { elemento: getElementByNota("G#"), nota: "G#", octaveOffset: 0 },
+  H: { elemento: getElementByNota("A"), nota: "A", octaveOffset: 1 },
+  U: { elemento: getElementByNota("A#"), nota: "A#", octaveOffset: 1 },
+  J: { elemento: getElementByNota("B"), nota: "B", octaveOffset: 1 },
+  K: { elemento: getElementByNota("C2"), nota: "C", octaveOffset: 1 },
+  O: { elemento: getElementByNota("C#2"), nota: "C#", octaveOffset: 1 },
+  L: { elemento: getElementByNota("D2"), nota: "D", octaveOffset: 1 },
+  P: { elemento: getElementByNota("D#2"), nota: "D#", octaveOffset: 1 },
+  semicolon: { elemento: getElementByNota("E2"), nota: "E", octaveOffset: 1 }
 }
 
 /* Determinando a tonalidade em Hz */ 
@@ -135,7 +135,7 @@ const tocarTecla = (key) => {
     osc.frequency.value = freq;
   }
 
-  teclas[key].element.classList.add("pressionada")
+  teclas[key].elemento.classList.add("pressionada")
   notasPressionadas.set(key, osc)
   notasPressionadas.get(key).start()
 }
@@ -146,7 +146,7 @@ const pararTecla = (key) => {
     return
   }
   
-  teclas[key].element.classList.remove("pressionada")
+  teclas[key].elemento.classList.remove("pressionada")
   const osc = notasPressionadas.get(key)
 
   if (osc) {
@@ -179,8 +179,8 @@ document.addEventListener("keyup", (e) => {
   pararTecla(key)
 })
 
-for (const [key, { element }] of Object.entries(teclas)) {
-  element.addEventListener("mousedown", () => {
+for (const [key, { elemento }] of Object.entries(teclas)) {
+  elemento.addEventListener("mousedown", () => {
     tocarTecla(key)
     teclaClicada = key
   })
