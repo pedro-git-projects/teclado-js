@@ -102,6 +102,18 @@ Sobre 3:
 
 É possível encontrar diversos teclados escritos com HTML, CSS e JS na internet. Embora a funcionalidade seja indêntica, procurei implementar da forma mais pessoal o possível. Apesar disso, parte do código, como por exemplo o css que estiliza do teclado, concidirá com aquilo que já foi feito por outros programadores. 
 
+## Instruções de uso do código
+
+1. Clone o repositório através do comando
+
+```sh
+git clone https://github.com/pedro-git-projects/teclado-js.git
+```
+
+2. Acesse a pasta teclado-js 
+
+3. Abra a página index.js no browser de sua preferência
+
 ## Referência
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web\_Audio\_API
