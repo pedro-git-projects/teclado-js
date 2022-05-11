@@ -9,7 +9,7 @@ const getElementByNota = (nota) =>
 	Armazenando as notas em um objeto tal que a chave é 
 	a entrada do teclado responsável por reproduzir aquela nota 
 */
-const keys = {
+const teclas = {
   A: { element: getElementByNota("C"), nota: "C", octaveOffset: 0 },
   W: { element: getElementByNota("C#"), nota: "C#", octaveOffset: 0 },
   S: { element: getElementByNota("D"), nota: "D", octaveOffset: 0 },
@@ -90,7 +90,7 @@ let teclaClicada = ""
 	Cada tecla terá um oscilador, ganho, ataque e decaimento  e release associada a si 
 */
 const tocarTecla = (key) => {
-  if (!keys[key]) {
+  if (!teclas[key]) {
     return;
   }
 
@@ -129,24 +129,24 @@ const tocarTecla = (key) => {
   osc.connect(ganhoNota)
   osc.type = "triangle"
 
-  const freq = getHz(keys[key].nota, (keys[key].octaveOffset || 0) + 3)
+  const freq = getHz(teclas[key].nota, (teclas[key].octaveOffset || 0) + 3)
 
   if (Number.isFinite(freq)) {
     osc.frequency.value = freq;
   }
 
-  keys[key].element.classList.add("pressionada")
+  teclas[key].element.classList.add("pressionada")
   notasPressionadas.set(key, osc)
   notasPressionadas.get(key).start()
 }
 
 /* pararTecla é a função inversa de tocarTecla */
 const pararTecla = (key) => {
-  if (!keys[key]) {
+  if (!teclas[key]) {
     return
   }
   
-  keys[key].element.classList.remove("pressionada")
+  teclas[key].element.classList.remove("pressionada")
   const osc = notasPressionadas.get(key)
 
   if (osc) {
@@ -179,7 +179,7 @@ document.addEventListener("keyup", (e) => {
   pararTecla(key)
 })
 
-for (const [key, { element }] of Object.entries(keys)) {
+for (const [key, { element }] of Object.entries(teclas)) {
   element.addEventListener("mousedown", () => {
     tocarTecla(key)
     teclaClicada = key
