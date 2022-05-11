@@ -116,4 +116,4 @@ git clone https://github.com/pedro-git-projects/teclado-js.git
 
 ## Referência
 
-https://developer.mozilla.org/en-US/docs/Web/API/Web\_Audio\_API
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
