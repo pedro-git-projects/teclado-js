@@ -1,8 +1,14 @@
+/* Criando o audioContext */
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
+/* Selecionando as notas do HTML >*/
 const getElementByNota = (nota) =>
   nota && document.querySelector(`[nota="${nota}"]`)
 
+/* 
+	Armazenando as notas em um objeto tal que a chave é 
+	a entrada do teclado responsável por reproduzir aquela nota 
+*/
 const keys = {
   A: { element: getElementByNota("C"), nota: "C", octaveOffset: 0 },
   W: { element: getElementByNota("C#"), nota: "C#", octaveOffset: 0 },
@@ -23,6 +29,7 @@ const keys = {
   semicolon: { element: getElementByNota("E2"), nota: "E", octaveOffset: 1 }
 }
 
+/* Determinando a tonalidade em Hz */ 
 const getHz = (nota = "A", oitava = 4) => {
   const A4 = 440
   let N = 0
@@ -74,9 +81,14 @@ const getHz = (nota = "A", oitava = 4) => {
   return A4 * Math.pow(2, N / 12)
 }
 
+/* Criando um mapa para armazenar as teclas pressionadas em um determinado momento */
 const notasPressionadas = new Map()
 let teclaClicada = ""
 
+/* 
+	Função tocarTecla que é ativada quando uma tecla ou botão do mouse for pressionada; 
+	Cada tecla terá um oscilador, ganho, ataque e decaimento  e release associada a si 
+*/
 const tocarTecla = (key) => {
   if (!keys[key]) {
     return;
@@ -126,8 +138,9 @@ const tocarTecla = (key) => {
   keys[key].element.classList.add("pressionada")
   notasPressionadas.set(key, osc)
   notasPressionadas.get(key).start()
-};
+}
 
+/* pararTecla é a função inversa de tocarTecla */
 const pararTecla = (key) => {
   if (!keys[key]) {
     return
@@ -145,6 +158,7 @@ const pararTecla = (key) => {
   }
 }
 
+/* Criando event listeners para chamar as funções anteriormente definidas */
 document.addEventListener("keydown", (e) => {
   const eventKey = e.key.toUpperCase()
   const key = eventKey === ";" ? "semicolon" : eventKey
